@@ -1,0 +1,17 @@
+<div class="book">
+  <div class="title">
+    {{book.title}}
+  </div>
+
+  <div class="description">
+    {{book.description}}
+  </div>
+
+  <img [src]="book.imageUrl" [alt]="book.title">
+
+  <div class="price">
+    {{book.price | currency}}
+  </div>
+
+  <button (click)="addToCartHandler()">Add To Cart</button>
+</div>
