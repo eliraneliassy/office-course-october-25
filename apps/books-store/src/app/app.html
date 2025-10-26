@@ -1,6 +1,18 @@
 <h1>My Amazing Book-Store</h1>
-<ul>
-  <a routerLink="feed"><li >Feed</li></a>
-  <a routerLink="cart"><li>Cart</li></a>
-</ul>
+<div class="container">
+  <ul>
+    <a routerLink="feed">
+      <li>Feed</li>
+    </a>
+    <a routerLink="cart">
+      <li>Cart</li>
+    </a>
+  </ul>
+
+  <div class="right">
+    # Items: ({{numberOfItems$ | async}})
+  </div>
+
+</div>
+
 <router-outlet></router-outlet>

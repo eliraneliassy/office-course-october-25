@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CartState } from '@office/cart-state';
 import { Book, BookComponent } from '@office/books';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'lib-cart',
-  imports: [BookComponent],
+  imports: [BookComponent, AsyncPipe],
   templateUrl: './cart.html',
   styleUrl: './cart.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,9 +14,5 @@ import { Book, BookComponent } from '@office/books';
 export class Cart {
   cartState = inject(CartState);
 
-  cart: Book[] = [];
-
-  constructor() {
-    this.cart = this.cartState.getCart();
-  }
+  cart$: Observable<Book[]> = this.cartState.getCart();
 }
