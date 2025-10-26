@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@office/books": ["apps/books/src/index.ts"]
+      "@office/books": ["apps/books/src/index.ts"],
+      "@office/feed": ["apps/feed/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

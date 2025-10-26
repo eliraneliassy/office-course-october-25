@@ -1,0 +1,3 @@
+@for (book of books$ | async; track book.id) {
+  <lib-books [book]="book"></lib-books>
+}
