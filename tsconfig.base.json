@@ -16,6 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@office/books": ["apps/books/src/index.ts"],
+      "@office/cart": ["apps/cart/src/index.ts"],
+      "@office/cart-state": ["apps/cart-state/src/index.ts"],
       "@office/feed": ["apps/feed/src/index.ts"]
     }
   },

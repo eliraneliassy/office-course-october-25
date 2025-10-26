@@ -21,6 +21,6 @@ export class BookComponent {
   @Output() addToCart = new EventEmitter<Book>();
 
   addToCartHandler() {
-    this.addToCart.emit();
+    this.addToCart.emit(this.book);
   }
 }

@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FeedService } from '../feed-service';
 import { AsyncPipe } from '@angular/common';
-import { BookComponent } from '@office/books';
+import { Book, BookComponent } from '@office/books';
+import { CartState } from '@office/cart-state';
 
 @Component({
   selector: 'lib-feed',
@@ -12,6 +13,12 @@ import { BookComponent } from '@office/books';
 })
 export class Feed {
   feedService = inject(FeedService);
+  cartState: CartState = inject(CartState);
 
   books$ = this.feedService.getBooks('Angular');
+
+  addToCart(book: Book) {
+
+    this.cartState.addToCart(book);
+  }
 }
