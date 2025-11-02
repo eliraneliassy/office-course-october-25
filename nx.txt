@@ -1,0 +1,5 @@
+npx nx migrate latest
+npm i --force
+npx nx migrate --run-migrations
+
+npx nx g @nx/angular:storybook-configuration --project=ui
