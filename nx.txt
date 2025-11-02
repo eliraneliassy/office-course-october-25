@@ -3,3 +3,5 @@ npm i --force
 npx nx migrate --run-migrations
 
 npx nx g @nx/angular:storybook-configuration --project=ui
+
+npx nx run ui:storybook
