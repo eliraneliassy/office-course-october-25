@@ -7,11 +7,12 @@ import {
 } from '@angular/core';
 import { Book } from '../books.interface';
 import { CurrencyPipe } from '@angular/common';
+import { Button } from '@office/ui';
 
 
 @Component({
   selector: 'lib-books',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, Button],
   templateUrl: './books.html',
   styleUrl: './books.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
