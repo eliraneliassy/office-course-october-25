@@ -19,7 +19,8 @@
       "@office/cart": ["apps/cart/src/index.ts"],
       "@office/cart-state": ["apps/cart-state/src/index.ts"],
       "@office/feed": ["apps/feed/src/index.ts"],
-      "@office/ui": ["apps/ui/src/index.ts"]
+      "@office/ui": ["apps/ui/src/index.ts"],
+      "@office/auth": ["apps/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,9 @@
+<form [formGroup]="form">
+  <lib-form-input type="text" placeholder="Enter Your Email"
+  formControlName="email"></lib-form-input>
+
+  <lib-form-input type="password" placeholder="Enter Your Password"
+                  formControlName="password"></lib-form-input>
+
+  <lib-button text="Login" (click)="submit()"></lib-button>
+</form>

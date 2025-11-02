@@ -1,0 +1,10 @@
+<label [for]="name">{{label}}</label>
+<input
+  [type]="type"
+  [placeholder]="placeholder"
+  [name]="name"
+  #input
+  (change)="onChange($any($event.target).value)"
+  (blur)="onBlur()"
+  [disabled]="disabled"
+>
