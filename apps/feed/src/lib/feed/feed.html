@@ -1,5 +1,9 @@
 <h2>Feed:</h2>
 
-@for (book of books$ | async; track book.id) {
+<div>
+  <input placeholder="Search for book..." (input)="search($any($event.target).value)">
+</div>
+<br><br>
+@for (book of books(); track book.id) {
   <lib-books [book]="book" (addToCart)="addToCart($event)"></lib-books>
 }

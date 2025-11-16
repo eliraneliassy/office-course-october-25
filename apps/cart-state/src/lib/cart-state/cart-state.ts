@@ -1,33 +1,38 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable, Signal, signal } from '@angular/core';
 import { Book } from '@office/books';
-import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartState {
 
-  private cart$: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
+  // private cart$: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
 
+  private cart = signal<Book[]>([]);
 
-  getCart() {
-    return this.cart$.asObservable();
+  getCart(): Signal<Book[]>  {
+    return this.cart.asReadonly(); // computed(() => this.cart());
   }
 
   addToCart(book: Book) {
     // this.cart.push(book);
-    const currentCart = this.cart$.value;
-    this.cart$.next([...currentCart, book]);
+    this.cart.update(prev => [...prev, {...book}]);
   }
 
   removeFromCart(book: Book) {
     // this.cart = this.cart.filter(item => item !== book);
+    this.cart.update(prev => {
+      const index = prev.indexOf(book);
+      if (index > -1) {
+        return prev.splice(index, 1);
+      }
+
+      return prev;
+    })
   }
 
-  numberOfItemsInCart(): Observable<number> {
-    return this.cart$.pipe(
-      map((cart) => cart.length)
-    )
+  numberOfItemsInCart(): Signal<number> {
+    return computed(() => this.cart().length)
   }
 
 }

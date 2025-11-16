@@ -1,12 +1,18 @@
-<!--<form [formGroup]="form">-->
-<!--  <lib-form-input type="text" placeholder="Enter Your Email"-->
-<!--                  [isRequired]="true"-->
-<!--  formControlName="email"></lib-form-input>-->
+<form [formGroup]="form">
+  <lib-form-input type="text" placeholder="Enter Your Email"
+                  [isRequired]="true"
+  formControlName="email"></lib-form-input>
 
-<!--  <lib-form-input type="password" placeholder="Enter Your Password"-->
-<!--                  formControlName="password"></lib-form-input>-->
+  <lib-form-input type="password" placeholder="Enter Your Password"
+                  formControlName="password"></lib-form-input>
 
-<!--  <lib-button text="Login" (click)="submit()"></lib-button>-->
-<!--</form>-->
+  <lib-button text="Login" (click)="submit()"></lib-button>
+</form>
 
-<lib-slider [slides]="images"></lib-slider>
+<!--<lib-slider [slides]="images" [slidesTemplate]="slidesTemplate"></lib-slider>-->
+
+<!--<ng-template let-name let-nav="nav" let-index="index" #slidesTemplate>-->
+<!--  <div>Name is: {{name}},</div>-->
+<!--  index is: {{index}}-->
+<!--  <lib-button (click)="nav.next()" text="MY NEXT"></lib-button>-->
+<!--</ng-template>-->

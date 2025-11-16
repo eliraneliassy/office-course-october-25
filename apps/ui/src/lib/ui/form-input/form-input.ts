@@ -3,9 +3,14 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  forwardRef, inject,
+  forwardRef,
+  inject,
+  input,
   Input,
+  model,
+  output,
   Output,
+  viewChild,
   ViewChild,
 } from '@angular/core';
 import {
@@ -40,21 +45,18 @@ import {
 })
 export class FormInput implements ControlValueAccessor, Validator {
 
-  @Input() type: 'text' | 'password' = 'text';
+  type = input<'text' | 'password'>('text');
+  name = input<string>();
+  placeholder = input('');
+  label = input('');
+  disabled = model(false);
+  isRequired = model(false);
 
-  @Input() name?: string;
+  value = output<string>();
 
-  @Input() placeholder = '';
 
-  @Input() label = '';
+  input = viewChild.required<ElementRef>('input');
 
-  @Input() disabled = false;
-
-  @Input() isRequired = false;
-
-  @Output() value = new EventEmitter<string>();
-
-  @ViewChild('input') input?: ElementRef;
 
   onChange = (value: string) => {
 
@@ -72,8 +74,8 @@ export class FormInput implements ControlValueAccessor, Validator {
   }
 
   writeValue(obj: string): void {
-    if(this.input) {
-      this.input.nativeElement.value = obj;
+    if(this.input()) {
+      this.input().nativeElement.value = obj;
     }
   }
   registerOnChange(fn: any): void {
@@ -84,7 +86,7 @@ export class FormInput implements ControlValueAccessor, Validator {
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.disabled.set(isDisabled);
   }
 
   registerOnValidatorChange(fn: () => void): void {
@@ -92,7 +94,7 @@ export class FormInput implements ControlValueAccessor, Validator {
 
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (this.isRequired && (!control.value)) {
+    if (this.isRequired() && (!control.value)) {
       return {'required': true};
     }
 

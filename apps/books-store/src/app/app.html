@@ -10,9 +10,16 @@
   </ul>
 
   <div class="right">
-    # Items: ({{numberOfItems$ | async}})
+    # Items: ({{numberOfItems()}})
   </div>
 
 </div>
+
+<!--counter is {{counter()}}-->
+<!--Is Even? {{isEven()}}-->
+<!--<button (click)="increment()">PLUS</button>-->
+<!--<button (click)="reset()">RESET</button>-->
+
+
 
 <router-outlet></router-outlet>

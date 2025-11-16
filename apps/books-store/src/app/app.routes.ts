@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 
 
 export const appRoutes: Route[] = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'feed', pathMatch: 'full' },
   {path: 'login',
   loadComponent: () => import('@office/auth')
     .then(c => c.Login)

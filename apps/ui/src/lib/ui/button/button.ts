@@ -1,7 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter, Output, Input
+  EventEmitter,
+  Output,
+  Input,
+  input,
+  output,
 } from '@angular/core';
 
 
@@ -13,9 +17,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Button {
-  @Input() text = '';
+  text = input.required<string>();
 
-  @Output() clickhandler = new EventEmitter<void>();
+  clickhandler = output<void>();
+
   click() {
     this.clickhandler.emit();
   }

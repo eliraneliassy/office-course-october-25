@@ -12,7 +12,7 @@
       "options": {
         "outputPath": "dist/apps/books-store",
         "browser": "apps/books-store/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/books-store/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [

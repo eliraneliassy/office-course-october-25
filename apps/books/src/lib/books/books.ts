@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input,
+  input,
+  Input, output,
   Output,
+  signal,
 } from '@angular/core';
 import { Book } from '../books.interface';
 import { CurrencyPipe } from '@angular/common';
@@ -18,10 +20,10 @@ import { Button } from '@office/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookComponent {
-  @Input() book!: Book;
-  @Output() addToCart = new EventEmitter<Book>();
+  book = input.required<Book>();
+  addToCart = output<Book>();
 
   addToCartHandler() {
-    this.addToCart.emit(this.book);
+    this.addToCart.emit(this.book());
   }
 }

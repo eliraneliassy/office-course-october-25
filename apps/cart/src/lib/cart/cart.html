@@ -1,5 +1,5 @@
 <h2>Cart:</h2>
 
-@for (book of cart$ | async; track book.id) {
+@for (book of cart(); track book.id) {
   <lib-books [book]="book"></lib-books>
 }

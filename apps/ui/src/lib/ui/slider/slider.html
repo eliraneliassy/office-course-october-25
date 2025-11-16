@@ -1,8 +1,20 @@
 <div class="swiper">
   <div class="slider">
-    @for (slide of slides; track slide) {
+    @for (slide of slides(); track slide) {
       <div class="slide">
-        <img [src]="slide" [alt]="slide">
+
+        <ng-container
+          [ngTemplateOutlet]="slidesTemplate() || defaultTemplate"
+          [ngTemplateOutletContext]="{
+          $implicit: slide,
+          nav,
+          index: currentSlide
+        }"></ng-container>
+
+
+        <ng-template class="slide" #defaultTemplate>
+          <img [src]="slide" [alt]="slide">
+        </ng-template>
       </div>
     }
 

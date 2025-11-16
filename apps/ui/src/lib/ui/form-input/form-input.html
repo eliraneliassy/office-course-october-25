@@ -1,12 +1,12 @@
-<label [for]="name">{{label}}</label>
+<label [for]="name()">{{label()}}</label>
 <input
-  [type]="type"
-  [placeholder]="placeholder"
-  [name]="name"
+  [type]="type()"
+  [placeholder]="placeholder()"
+  [name]="name()"
   #input
   (change)="onChange($any($event.target).value)"
   (blur)="onBlur()"
-  [disabled]="disabled"
+  [disabled]="disabled()"
 >
 
 @if (!controlDir.control?.invalid) {
