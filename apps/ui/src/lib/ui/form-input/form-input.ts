@@ -3,12 +3,21 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  forwardRef,
+  forwardRef, inject,
   Input,
   Output,
   ViewChild,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  NgControl,
+  ValidationErrors,
+  Validator,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'lib-form-input',
@@ -17,14 +26,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   styleUrl: './form-input.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormInput),
-      multi: true
-    }
+    // {
+    //   provide: NG_VALUE_ACCESSOR,
+    //   useExisting: forwardRef(() => FormInput),
+    //   multi: true
+    // },
+    // {
+    //   provide: NG_VALIDATORS,
+    //   useExisting: forwardRef(() => FormInput),
+    //   multi: true
+    // }
   ]
 })
-export class FormInput implements ControlValueAccessor {
+export class FormInput implements ControlValueAccessor, Validator {
 
   @Input() type: 'text' | 'password' = 'text';
 
@@ -36,6 +50,8 @@ export class FormInput implements ControlValueAccessor {
 
   @Input() disabled = false;
 
+  @Input() isRequired = false;
+
   @Output() value = new EventEmitter<string>();
 
   @ViewChild('input') input?: ElementRef;
@@ -45,6 +61,13 @@ export class FormInput implements ControlValueAccessor {
   }
 
   onBlur() {
+
+  }
+
+  controlDir = inject(NgControl);
+
+  constructor() {
+    this.controlDir.valueAccessor = this;
 
   }
 
@@ -62,6 +85,18 @@ export class FormInput implements ControlValueAccessor {
 
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+  }
+
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.isRequired && (!control.value)) {
+      return {'required': true};
+    }
+
+    return null;
   }
 
 
