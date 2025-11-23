@@ -1,0 +1,10 @@
+<lib-users [users]="users$ | async" (selectedUser)="selectedUser($event)"
+></lib-users>
+
+<hr>
+
+<lib-user-posts [posts]="posts$ | async" (selectedPost)="selectedPost($event)"></lib-user-posts>
+
+<hr>
+
+<lib-user-comments [comments]="comments$ | async"></lib-user-comments>

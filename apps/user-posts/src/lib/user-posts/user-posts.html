@@ -1,1 +1,3 @@
-<p>UserPosts works!</p>
+@for (post of posts; track post.id) {
+  <div (click)="select(post)">{{post.title}}</div>
+}

@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 
 
 export const appRoutes: Route[] = [
-  { path: '', redirectTo: 'feed', pathMatch: 'full' },
+  { path: '', redirectTo: 'posts', pathMatch: 'full' },
   {path: 'login',
   loadComponent: () => import('@office/auth')
     .then(c => c.Login)
@@ -15,5 +15,7 @@ export const appRoutes: Route[] = [
     path: 'cart',
     loadComponent: () =>
       import('@office/cart').then(c => c.Cart)
-  }
+  },
+  {path: 'posts', loadComponent: () =>
+    import('@office/posts').then(c => c.UserPostsLayout)}
 ];
