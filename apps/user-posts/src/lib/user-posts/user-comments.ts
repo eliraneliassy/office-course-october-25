@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  Input,
+} from '@angular/core';
 import { UserComment } from './user-comment';
 
 @Component({
@@ -9,5 +14,5 @@ import { UserComment } from './user-comment';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserComments {
-  @Input() comments: UserComment[] | null = [];
+  comments = input<UserComment[] | undefined>();
 }

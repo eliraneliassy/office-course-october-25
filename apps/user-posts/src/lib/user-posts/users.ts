@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  input,
   Input,
+  model,
   Output,
 } from '@angular/core';
 import { User } from './user';
@@ -15,11 +17,11 @@ import { User } from './user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Users {
-  @Input() users: User[] | null = [];
+  users = input<User[]>()
 
-  @Output() selectedUser: EventEmitter<User> = new EventEmitter();
+  selectedUser = model<User>()
 
   select(user: User) {
-    this.selectedUser.emit(user);
+    this.selectedUser.set(user);
   }
 }

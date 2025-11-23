@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  input,
   Input,
+  model,
   Output,
 } from '@angular/core';
 import { Post } from './post';
@@ -15,11 +17,11 @@ import { Post } from './post';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserPosts {
-  @Input() posts: Post[] | null = [];
+  posts = input<Post[] | undefined>([]);
 
-  @Output() selectedPost: EventEmitter<Post> = new EventEmitter();
+  selectedPost = model<Post>();
 
   select(post: Post) {
-    this.selectedPost.emit(post);
+    this.selectedPost.set(post);
   }
 }

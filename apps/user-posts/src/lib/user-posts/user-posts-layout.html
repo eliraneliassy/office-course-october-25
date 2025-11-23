@@ -1,10 +1,16 @@
-<lib-users [users]="users$ | async" (selectedUser)="selectedUser($event)"
-></lib-users>
+@if(users.isLoading()) {
+  loading...
+} @else {
+  <lib-users [users]="users.value()" [(selectedUser)]="selectedUser"
+  ></lib-users>
+}
+
 
 <hr>
 
-<lib-user-posts [posts]="posts$ | async" (selectedPost)="selectedPost($event)"></lib-user-posts>
+<lib-user-posts [posts]="posts.value()"
+                [(selectedPost)]="selectedPost"></lib-user-posts>
 
 <hr>
 
-<lib-user-comments [comments]="comments$ | async"></lib-user-comments>
+<lib-user-comments [comments]="comments.value()"></lib-user-comments>
